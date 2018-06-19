@@ -34,6 +34,15 @@ export default class Login extends Component {
                 this.setState({ token: res.data.access_token });
                 window.localStorage.setItem('token', res.data.access_token);
                 //  this.saveUserToken(res.data.access_token );
+                Meteor.call("get_page_access_token",res.data.access_token,(err,res)=>{
+                    if(err){
+                        console.log(err);
+                    }
+                    else{
+                        console.log("see res: ",res);
+                    }
+                });
+
             }
         })
     }
